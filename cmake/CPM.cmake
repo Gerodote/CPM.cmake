@@ -752,11 +752,11 @@ function(CPMAddPackage)
         cpm_export_variables(${CPM_ARGS_NAME})
         return()
       else()
-        string(replace " " ";" EDITED_CPM_ARGS_FIND_PACKAGE_ARGUMENTS
+        string(REPLACE " " ";" EDITED_CPM_ARGS_FIND_PACKAGE_ARGUMENTS
                        "${CPM_ARGS_FIND_PACKAGE_ARGUMENTS}"
         )
         message(
-          warning
+          WARNING
             "${CPM_INDENT} ${CPM_ARGS_NAME} not found via find_package(${CPM_ARGS_NAME} ${CPM_ARGS_VERSION} ${EDITED_CPM_ARGS_FIND_PACKAGE_ARGUMENTS}). The warning emitted bacause CPM_USE_LOCAL_PACKAGES is set to \"${CPM_USE_LOCAL_PACKAGES}\" . Falling back to downloading the package."
         )
       endif()
