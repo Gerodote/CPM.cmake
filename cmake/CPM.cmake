@@ -257,8 +257,16 @@ function(cpm_find_package NAME VERSION)
         YES
         PARENT_SCOPE
     )
+    set(${NAME}_LOCAL
+        YES
+        PARENT_SCOPE
+    )
   else()
     set(CPM_PACKAGE_FOUND
+        NO
+        PARENT_SCOPE
+    )
+    set(${NAME}_LOCAL
         NO
         PARENT_SCOPE
     )
@@ -762,6 +770,7 @@ function(CPMAddPackage)
       return()
     endif()
   endif()
+  set(${CPM_ARGS_NAME}_LOCAL NO)
 
   CPMRegisterPackage("${CPM_ARGS_NAME}" "${CPM_ARGS_VERSION}")
 
@@ -965,6 +974,10 @@ macro(cpm_export_variables name)
   )
   set(${name}_ADDED
       "${${name}_ADDED}"
+      PARENT_SCOPE
+  )
+  set(${name}_LOCAL
+      "${${name}_LOCAL}"
       PARENT_SCOPE
   )
   set(CPM_LAST_PACKAGE_NAME
